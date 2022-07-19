@@ -31,7 +31,7 @@ const findAllCursos = async (req, res) => {
   try {
     const allCursos = await CursosModel.find()
     res.status(200).json({
-      "message": "cursos encontardos",
+      "message": "cursos encontrados",
       "code": "SUCCESS",
       "data": allCursos
     })
@@ -45,9 +45,28 @@ const findAllCursos = async (req, res) => {
   }
 }
 
+const findCursoById = async (req, res) => {
+  try {
+    const findCurso = await CursosModel.findById(req.params.id)
+    res.status(200).json({
+      "message": "curso encontrado",
+      "code": "SUCCESS",
+      "data": findCurso
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({
+      "message": error.message,
+      "code": "INTERNAL_SERVER_ERROR",
+      "data": null
+    })
+  }
+}
+
 module.exports = {
   createCursos,
-  findAllCursos
+  findAllCursos,
+  findCursoById
 
 
 }
