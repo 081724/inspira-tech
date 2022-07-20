@@ -48,11 +48,21 @@ const findAllCursos = async (req, res) => {
 const findCursoById = async (req, res) => {
   try {
     const findCurso = await CursosModel.findById(req.params.id)
+
+    if (!findCurso) {
+     return res.status(404).json({
+        "mensagem": "curso nao encontrado"
+      })
+    }
+
     res.status(200).json({
       "message": "curso encontrado",
       "code": "SUCCESS",
       "data": findCurso
     })
+
+
+
   } catch (error) {
     console.error(error)
     res.status(500).json({
@@ -66,14 +76,21 @@ const findCursoById = async (req, res) => {
 const updateCursos = async (req, res) => {
   try {
     const { id, curso, local, idade, inscricao, gratuito, comentario } = req.body
+
+    const cursoUpdate = await CursosModel
+    .findByIdAndUpdate(req.params.id)
+    if (!cursoUpdate) {
+      return res.status(404).json({
+         "mensagem": "curso nao encontrado"
+       })
+     }
+
     const updatedCurso = await CursosModel
       .findByIdAndUpdate(req.params.id, {
         id, curso, local, idade, inscricao, gratuito, comentario
       })
 
-    const cursoUpdate = await CursosModel
-      .findByIdAndUpdate(req.params.id)
-
+    
     res.status(200).json({
       "message": "curso encontrado",
       "code": "SUCCESS",
@@ -93,7 +110,11 @@ const deleteCursos = async (req, res) => {
   try {
     const { id } = req.params
     const deletedCurso = await CursosModel.findByIdAndDelete(id)
-
+    if (!deletedCurso) {
+      return res.status(404).json({
+         "mensagem": "curso nao encontrado"
+       })
+     }
     res.status(200).json({
       "message": "curso deletado",
       "code": "SUCCESS",
