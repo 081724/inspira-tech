@@ -7,6 +7,6 @@ router.post("/curso", controller.createCursos)
 router.get("/cursos",controller.findAllCursos)
 router.get("/curso/:id",controller.findCursoById)
 router.patch("/curso/:id",controller.updateCursos)
-
+router.delete("/curso/:id",controller.deleteCursos)
 
 module.exports = router 

@@ -65,15 +65,15 @@ const findCursoById = async (req, res) => {
 
 const updateCursos = async (req, res) => {
   try {
-    const { id, curso, local, idade, inscricao, gratuito, comentario} = req.body
+    const { id, curso, local, idade, inscricao, gratuito, comentario } = req.body
     const updatedCurso = await CursosModel
-    .findByIdAndUpdate(req.params.id, {
-      id, curso, local, idade, inscricao, gratuito, comentario
-    })
-    
+      .findByIdAndUpdate(req.params.id, {
+        id, curso, local, idade, inscricao, gratuito, comentario
+      })
+
     const cursoUpdate = await CursosModel
-    .findByIdAndUpdate(req.params.id)
-    
+      .findByIdAndUpdate(req.params.id)
+
     res.status(200).json({
       "message": "curso encontrado",
       "code": "SUCCESS",
@@ -85,14 +85,35 @@ const updateCursos = async (req, res) => {
       "message": error.message,
       "code": "INTERNAL_SERVER_ERROR",
       "data": null
-     })
+    })
   }
 }
+
+const deleteCursos = async (req, res) => {
+  try {
+    const { id } = req.params
+    const deletedCurso = await CursosModel.findByIdAndDelete(id)
+
+    res.status(200).json({
+      "message": "curso deletado",
+      "code": "SUCCESS",
+      "data": null
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({
+      "message": error.message,
+      "code": "INTERNAL_SERVER_ERROR",
+      "data": null
+    })
+  }
+}
+
 module.exports = {
   createCursos,
   findAllCursos,
   findCursoById,
-  updateCursos
-
+  updateCursos,
+  deleteCursos
 
 }
