@@ -10,10 +10,11 @@ const app = express()
 
 app.use(express.json())
 app.use(cors())
-app.use('/minha-rota-de-documentacao', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 mongoose.connect()
 
+app.use('/minha-rota-de-documentacao', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use("/",cursosRoutes)
 app.use("/login",loginRoutes)
+
 module.exports = app

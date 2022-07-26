@@ -2,4 +2,6 @@ const app = require("./src/app")
 
 const PORT = process.env.PORT
 
-app.listen(PORT,()=>console.log(`escutando na porta ${PORT}`))
+app.listen(PORT,()=> {
+    console.log(`escutando na porta ${PORT}`)
+})
