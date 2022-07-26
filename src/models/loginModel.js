@@ -1,20 +1,14 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
 
-const loginSchema = mongoose.Schema({
-    _id:{
-        type: mongoose.Schema.Types.ObjectId,
-        default: mongoose.Types.ObjectId
-    },
-    email:{
-        type: String,
-        required: true
-    },
-    senha:{
-        type: String,
-        required: true
-    }
-},{timestamps:true})
+const loginSchema = new mongoose.Schema({
+    nome: {type: String},
+    email: {type: String},
+    senha: {type: String}
+},
+{
+    versionKey: false
+})
 
-const Model = mongoose.model('login',loginSchema)
+const login = mongoose.model('login', loginSchema)
 
-module.exports = Model
+module.exports =  login
