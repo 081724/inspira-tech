@@ -14,7 +14,7 @@ app.use(cors())
 mongoose.connect()
 
 app.use('/minha-rota-de-documentacao', swaggerUi.serve, swaggerUi.setup(swaggerFile));
-app.use("/",cursosRoutes)
+app.use("/curso",cursosRoutes)
 app.use("/login",loginRoutes)
 
 module.exports = app

@@ -3,10 +3,10 @@ const express = require('express')
 
 const router = express.Router()
 
-router.post("/curso", controller.createCursos)
-router.get("/cursos",controller.findAllCursos)
-router.get("/curso/:id",controller.findCursoById)
-router.patch("/curso/:id",controller.updateCursos)
-router.delete("/curso/:id",controller.deleteCursos)
+router.post("/", controller.createCursos)
+router.get("/",controller.findAllCursos)
+router.get("/:id",controller.findCursoById)
+router.patch("/:id",controller.updateCursos)
+router.delete("/:id",controller.deleteCursos)
 
 module.exports = router 
