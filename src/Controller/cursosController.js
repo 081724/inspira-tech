@@ -89,12 +89,13 @@ const updateCursos = async (req, res) => {
       .findByIdAndUpdate(req.params.id, {
         id, curso, local, idade, inscricao, gratuito, comentario
       })
-
+      const updated = await CursosModel
+      .findById(req.params.id)
     
     res.status(200).json({
-      "message": "curso encontrado",
+      "message": "curso alterado",
       "code": "SUCCESS",
-      "data": updatedCurso
+      "data": updated
     })
   } catch (error) {
     console.error(error)
