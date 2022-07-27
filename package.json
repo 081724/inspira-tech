@@ -1,9 +1,12 @@
 {
+
+
   "name": "inspira-tech",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "node_modules/",
+  "main": "server.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
     "swagger-autogen": "node swagger.js"
   },
@@ -11,22 +14,32 @@
     "type": "git",
     "url": "git+https://github.com/081724/inspira-tech.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/081724/inspira-tech/issues"
   },
+ 
   "homepage": "https://github.com/081724/inspira-tech#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
+    "dotenv-safe": "^8.2.0",
     "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.4",
-    "nodemon": "^2.0.19",
-    "save": "^2.5.0",
     "swagger-autogen": "^2.21.5",
     "swagger-ui-express": "^4.5.0"
+  },
+ 
+ 
+  "devDependencies": {
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "28.1.0",
+    "nodemon": "^2.0.19"
   }
-}
+ }
