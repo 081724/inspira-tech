@@ -9,6 +9,6 @@ const loginSchema = new mongoose.Schema({
     versionKey: false
 })
 
-const login = mongoose.model('login', loginSchema)
+const login = mongoose.model('logins', loginSchema)
 
 module.exports =  login
