@@ -3,27 +3,22 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const SECRET = process.env.SECRET
 
+
 const criarLogin = async (req, res) => {
-  const { email, senha } = req.body
 
-  const senhaComHash = await bcrypt.hashSync(req.body.senha, 10)
-  req.body.senha = senhaComHash
-
-  const login = new loginModel(req.body)
-  try {
-    await login.save
-
+  const senhaComHash = bcrypt.hashSync(req.body.senha, 10);
+  req.body.senha = senhaComHash;
+  
+  const user = new loginModel(req.body);
+  user.save(function (err) {
+    if (err) {
+      res.status(500).send({ message: err.message });
+    }
     res.status(201).send({
-      message: "login cadastrado com sucesso"
-    })
-  } catch (err) {
-
-    res.status(500).send({ message: err.message })
-
-  }
-
-}
-
+      message: "login cadastrado com sucesso",
+      user});
+  });
+};
 const listaUsuario = (req, res) => {
   loginModel.find(function (err, usuario) {
     if (err) {
